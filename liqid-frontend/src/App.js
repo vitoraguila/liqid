@@ -5,12 +5,14 @@ import configureStore from './store';
 
 // COMPONENT
 import Home from './pages/home';
+import { GlobalStyles } from './utils/globalStyle';
 
 const { persistor, store } = configureStore();
 
 const App = () => (
   <Provider store={store}>
     <PersistGate persistor={persistor}>
+      <GlobalStyles />
       <Home />
     </PersistGate>
   </Provider>
