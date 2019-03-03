@@ -8,9 +8,8 @@ import {
   Middle,
   QuestionsStep,
   Question,
-  BtnNext,
-  BtnBack,
-  BtnFinish
+  Buttons,
+  InputForm
 } from './styles';
 
 import logo from '../../assets/images/logo.png';
@@ -42,6 +41,8 @@ class Home extends Component {
           >
             <QuestionsStep>{`${3} of ${10}`}</QuestionsStep>
             <StatusBar total={10} current={2} />
+            <Question>Question: How old are you?</Question>
+            <InputForm value="" placeholder="Answer here" />
           </Container>
         </Middle>
         <Footer>
@@ -50,9 +51,9 @@ class Home extends Component {
             alignItems="center"
             justifyContent="space-between"
           >
-            <BtnBack>Back</BtnBack>
-            <BtnFinish>Finish</BtnFinish>
-            <BtnNext>Next</BtnNext>
+            <Buttons color="#999">Back</Buttons>
+            <Buttons color="#6bc557">Finish</Buttons>
+            <Buttons color="#3b5371">Next</Buttons>
           </Container>
         </Footer>
       </Wrapper>

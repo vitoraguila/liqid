@@ -39,7 +39,7 @@ export const Middle = styled.div`
 export const Footer = styled.div`
   display: flex;
   background-color: #fff;
-  height: 50px;
+  height: 70px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -59,7 +59,35 @@ export const QuestionsStep = styled.span`
   margin-top: 20px;
   margin-bottom: 20px;
 `;
-export const Question = styled.span``;
-export const BtnNext = styled.button``;
-export const BtnBack = styled.button``;
-export const BtnFinish = styled.button``;
+
+export const Buttons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 50px;
+  background-color: ${props => props.color};
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50px;
+  .span {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+  }
+`;
+export const Question = styled.span`
+  margin-top: 30px;
+  font-size: 23px;
+  font-weight: 500;
+  color: #999;
+`;
+export const InputForm = styled.input`
+  margin-top: 20px;
+  width: 300px;
+  background-color: #fff;
+  border: 1pt solid #ccc;
+  padding: 10px;
+  font-size: 20px;
+  height: 50px;
+`;

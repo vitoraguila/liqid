@@ -10,7 +10,7 @@ export const GlobalStyles = createGlobalStyle`
   html, body, #root {
     height: 100%;
     background-color: #FFF;
-    font-family: Lato;
+    font-family: Arial;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
