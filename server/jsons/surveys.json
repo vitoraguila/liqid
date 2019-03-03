@@ -1,0 +1,19 @@
+{
+  "surveys": [
+    {
+      "id": 1,
+      "question": "How old are you?",
+      "type": "input"
+    },
+    {
+      "id": 2,
+      "question": "How old are you?",
+      "type": "dropdown"
+    },
+    {
+      "id": 3,
+      "question": "How old are you?",
+      "type": "radio"
+    }
+  ]
+}
