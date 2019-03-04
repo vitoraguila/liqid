@@ -31,11 +31,10 @@ const survey = (state = initialState, action) => {
       const { surveys } = action.payload;
 
       return {
+        ...state,
         loading: action.payload.loading,
         data: {
-          surveys: {
-            ...surveys
-          }
+          surveys: action.payload.surveys
         }
       };
     }

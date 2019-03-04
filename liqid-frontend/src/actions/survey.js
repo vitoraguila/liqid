@@ -5,7 +5,7 @@ import {
   SURVEYS_STORE_RESET
 } from '../constants/actionTypes';
 
-export const saveSurvey = (data, type) => async dispatch => {
+export const saveSurvey = data => async dispatch => {
   dispatch({
     type: SURVEYS_STORE,
     payload: {
@@ -17,7 +17,7 @@ export const saveSurvey = (data, type) => async dispatch => {
     dispatch({
       type: SURVEYS_STORE_SUCCESS,
       payload: {
-        surveys: null
+        surveys: data
       }
     });
   } catch (err) {
@@ -36,7 +36,7 @@ export const resetSurveys = () => async dispatch => {
     type: SURVEYS_STORE_RESET,
     payload: {
       loading: false,
-      data: null
+      survey: null
     }
   });
 };
