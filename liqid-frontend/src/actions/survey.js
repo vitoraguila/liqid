@@ -13,6 +13,8 @@ export const saveSurvey = data => async dispatch => {
     }
   });
 
+  console.log(data);
+
   try {
     dispatch({
       type: SURVEYS_STORE_SUCCESS,

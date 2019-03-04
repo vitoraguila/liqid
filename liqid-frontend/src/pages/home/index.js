@@ -24,7 +24,8 @@ const Home = ({
   saveAnswer,
   currentPage,
   onChangeAnswer,
-  answer
+  answer,
+  goBack
 }) => {
   const questionsTotal = questions ? questions.length : 0;
   const surveysTotal = surveys ? Object.keys(surveys).length : 0;
@@ -38,6 +39,11 @@ const Home = ({
   console.log(answer[currentPage - 1]);
   console.log(answer[currentPage]);
 
+  const filterId = surveys
+    ? surveys.filter(e => e.id === currentPage).map(e => e.answer)
+    : '';
+
+  console.log(filterId[0]);
   return (
     <Wrapper>
       <Header>
@@ -52,8 +58,9 @@ const Home = ({
           alignItems="center"
           justifyContent="center"
         >
-          <QuestionsStep>{`${surveysTotal} of ${questionsTotal}`}</QuestionsStep>
-          <StatusBar current={surveysTotal} total={questionsTotal} />
+          <QuestionsStep>{`${currentPage -
+            1} of ${questionsTotal}`}</QuestionsStep>
+          <StatusBar current={currentPage - 1} total={questionsTotal} />
           {questions &&
             questions
               .filter(e => e.id === currentPage)
@@ -62,7 +69,7 @@ const Home = ({
                   <Question>{`Question: ${e.question}`}</Question>
                   <InputForm
                     name={currentPage}
-                    value={answer[currentPage] || ''}
+                    value={answer[currentPage] || filterId[0] || ''}
                     onChange={e => onChangeAnswer(e)}
                     placeholder="Answer here"
                   />
@@ -76,7 +83,9 @@ const Home = ({
           alignItems="center"
           justifyContent="space-between"
         >
-          <Buttons color="#999">Back</Buttons>
+          <Buttons onClick={() => goBack()} color="#999">
+            Back
+          </Buttons>
           <Buttons color="#6bc557">Finish</Buttons>
           <Buttons
             onClick={() => saveAnswer(currentPage, answer[currentPage])}

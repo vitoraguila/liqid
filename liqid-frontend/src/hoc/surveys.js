@@ -17,12 +17,17 @@ export function surveys(WrappedComponent) {
 
       this.state = {
         questions: {},
-        answer: {}
+        answer: {},
+        error: '',
+        errorInfo: ''
       };
     }
 
-    componentWillMount() {
-      this.props.resetSurveys();
+    componentDidCatch(error, errorInfo) {
+      this.setState({
+        error: error,
+        errorInfo: errorInfo
+      });
     }
 
     async componentDidMount() {
@@ -39,7 +44,8 @@ export function surveys(WrappedComponent) {
         });
         console.log(response.data);
       } catch (error) {
-        console.log(error.response);
+        console.log(error);
+        this.setState({ error });
       }
     }
 
@@ -58,13 +64,21 @@ export function surveys(WrappedComponent) {
           answer: value
         }));
 
-      let array = this.props.surveys || [];
+      console.log(data);
 
-      array.push({ data });
+      let surveys = [];
+      if (this.props.surveys) {
+        surveys = this.props.surveys.filter(e => e.id !== id);
+      }
 
-      console.log(array);
+      console.log(surveys);
 
-      this.props.saveSurvey(array);
+      let newArray = surveys.concat(data);
+
+      console.log(surveys);
+      console.log(newArray);
+
+      this.props.saveSurvey(newArray);
 
       this.setState({
         currentPage: this.state.currentPage + 1,
@@ -79,10 +93,20 @@ export function surveys(WrappedComponent) {
       });
     };
 
+    goBack = () => {
+      this.setState({ currentPage: this.state.currentPage - 1 });
+    };
+
     render() {
-      const { questions, currentPage, answer } = this.state;
+      const { questions, currentPage, answer, error, errorInfo } = this.state;
       console.log(questions);
       console.log(this.props.surveys);
+      console.log(error);
+      console.log(errorInfo);
+
+      if (error) {
+        return <div>Ops, Something went wrong</div>;
+      }
 
       return (
         <WrappedComponent
@@ -92,6 +116,7 @@ export function surveys(WrappedComponent) {
           saveAnswer={this.saveAnswer}
           onChangeAnswer={this.onChangeAnswer}
           answer={answer}
+          goBack={this.goBack}
         />
       );
     }
