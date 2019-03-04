@@ -60,7 +60,7 @@ export const QuestionsStep = styled.span`
   margin-bottom: 20px;
 `;
 
-export const Buttons = styled.div`
+export const Buttons = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,4 +108,11 @@ export const CheckOptions = styled.div`
       margin-right: 10px;
     }
   }
+`;
+
+export const MsgThanks = styled.span`
+  font-size: 16px;
+  text-align:center;
+  font-weight: bold;
+  margin-top: 20px;
 `;

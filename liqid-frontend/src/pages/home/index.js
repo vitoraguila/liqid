@@ -10,7 +10,8 @@ import {
   Question,
   Buttons,
   InputForm,
-  CheckOptions
+  CheckOptions,
+  MsgThanks
 } from './styles';
 
 import logo from '../../assets/images/logo.png';
@@ -40,11 +41,8 @@ const Home = ({
   console.log(answer[currentPage - 1]);
   console.log(answer[currentPage]);
 
-  const filterId = surveys
-    ? surveys.filter(e => e.id === currentPage).map(e => e.answer)
-    : '';
+  const currentValue = answer[currentPage] || '';
 
-  console.log(filterId[0]);
   return (
     <Wrapper>
       <Header>
@@ -71,7 +69,7 @@ const Home = ({
                   {e.type === 'input' && (
                     <InputForm
                       name={currentPage}
-                      value={answer[currentPage] || filterId[0] || ''}
+                      value={currentValue}
                       onChange={e => onChangeAnswer(e)}
                       placeholder="Answer here"
                     />
@@ -79,7 +77,7 @@ const Home = ({
                   {e.type === 'dropdown' && (
                     <select
                       name={currentPage}
-                      value={answer[currentPage] || filterId[0]}
+                      value={currentValue}
                       onChange={e => onChangeAnswer(e)}
                     >
                       {e.answersOptions.map(e => (
@@ -94,9 +92,7 @@ const Home = ({
                           <input
                             type="radio"
                             value={e}
-                            defaultChecked={
-                              answer[currentPage] === e || filterId[0] === e
-                            }
+                            defaultChecked={currentValue === e}
                             name={currentPage}
                           />
                           <span>{e}</span>
@@ -106,6 +102,14 @@ const Home = ({
                   )}
                 </Fragment>
               ))}
+
+          {
+            currentPage > questionsTotal &&
+              <Fragment>
+                <MsgThanks>Thank you for complete survey!</MsgThanks>
+                <MsgThanks>Please confirm in the button below.</MsgThanks>
+              </Fragment>
+          }
         </Container>
       </Middle>
       <Footer>
@@ -114,16 +118,30 @@ const Home = ({
           alignItems="center"
           justifyContent="space-between"
         >
-          <Buttons onClick={() => goBack()} color="#999">
+          <Buttons
+            disabled={currentPage === 1}
+            onClick={() => goBack()}
+            color="#999"
+          >
             Back
           </Buttons>
-          <Buttons color="#6bc557">Finish</Buttons>
-          <Buttons
-            onClick={() => saveAnswer(currentPage, answer[currentPage])}
-            color="#3b5371"
-          >
-            Next
-          </Buttons>
+
+          {currentPage > questionsTotal && (
+            <Buttons color="#6bc557">Finish</Buttons>
+          )}
+
+          {currentPage <= questionsTotal && (
+            <Buttons
+              disabled={
+                answer[currentPage] === undefined ||
+                answer[currentPage].length === 0
+              }
+              onClick={() => saveAnswer(currentPage, answer[currentPage])}
+              color="#3b5371"
+            >
+              Next
+            </Buttons>
+          )}
         </Container>
       </Footer>
     </Wrapper>

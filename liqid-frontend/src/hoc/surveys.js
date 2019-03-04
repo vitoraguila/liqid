@@ -31,13 +31,18 @@ export function surveys(WrappedComponent) {
     }
 
     async componentDidMount() {
-      this.props.resetSurveys();
+      //this.props.resetSurveys();
 
       try {
         const response = await api.surveys();
 
+        const inputFill = this.props.surveys
+          ? this.props.surveys.map(e => ({ [e.id]: e.answer }))
+          : {};
+
         this.setState({
           questions: response.data,
+          answer: inputFill,
           currentPage: this.props.surveys
             ? Object.keys(this.props.surveys).length + 1
             : 1
@@ -89,9 +94,9 @@ export function surveys(WrappedComponent) {
     onChangeAnswer = e => {
       console.log(e.target.name);
       console.log(e.target.value);
+
       this.setState({
-        ...this.state.answer,
-        answer: { [e.target.name]: e.target.value }
+        answer: { ...this.state.answer, [e.target.name]: e.target.value }
       });
     };
 
