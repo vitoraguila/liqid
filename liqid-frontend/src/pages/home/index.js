@@ -9,7 +9,8 @@ import {
   QuestionsStep,
   Question,
   Buttons,
-  InputForm
+  InputForm,
+  CheckOptions
 } from './styles';
 
 import logo from '../../assets/images/logo.png';
@@ -67,12 +68,42 @@ const Home = ({
               .map(e => (
                 <Fragment>
                   <Question>{`Question: ${e.question}`}</Question>
-                  <InputForm
-                    name={currentPage}
-                    value={answer[currentPage] || filterId[0] || ''}
-                    onChange={e => onChangeAnswer(e)}
-                    placeholder="Answer here"
-                  />
+                  {e.type === 'input' && (
+                    <InputForm
+                      name={currentPage}
+                      value={answer[currentPage] || filterId[0] || ''}
+                      onChange={e => onChangeAnswer(e)}
+                      placeholder="Answer here"
+                    />
+                  )}
+                  {e.type === 'dropdown' && (
+                    <select
+                      name={currentPage}
+                      value={answer[currentPage] || filterId[0]}
+                      onChange={e => onChangeAnswer(e)}
+                    >
+                      {e.answersOptions.map(e => (
+                        <option value={e}>{e}</option>
+                      ))}
+                    </select>
+                  )}
+                  {e.type === 'radio' && (
+                    <CheckOptions onChange={e => onChangeAnswer(e)}>
+                      {e.answersOptions.map(e => (
+                        <div>
+                          <input
+                            type="radio"
+                            value={e}
+                            defaultChecked={
+                              answer[currentPage] === e || filterId[0] === e
+                            }
+                            name={currentPage}
+                          />
+                          <span>{e}</span>
+                        </div>
+                      ))}
+                    </CheckOptions>
+                  )}
                 </Fragment>
               ))}
         </Container>

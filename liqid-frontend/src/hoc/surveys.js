@@ -81,12 +81,14 @@ export function surveys(WrappedComponent) {
       this.props.saveSurvey(newArray);
 
       this.setState({
-        currentPage: this.state.currentPage + 1,
-        answer: {}
+        currentPage: this.state.currentPage + 1
+        //answer: {}
       });
     };
 
     onChangeAnswer = e => {
+      console.log(e.target.name);
+      console.log(e.target.value);
       this.setState({
         ...this.state.answer,
         answer: { [e.target.name]: e.target.value }
