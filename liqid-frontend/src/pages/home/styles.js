@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from '../../utils/colors';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const Wrapper = styled.div`
   justify-items: space-between;
   width: 100%;
   min-height: 100%;
-  border-top: 3pt solid #e6223c;
+  border-top: 3pt solid ${colors.red};
 `;
 export const Container = styled.div`
   display: flex;
@@ -18,7 +19,7 @@ export const Container = styled.div`
 `;
 export const Header = styled.div`
   display: flex;
-  background-color: #fff;
+  background-color: ${colors.white};
   flex-direction: column;
   height: 60px;
   align-items: center;
@@ -38,7 +39,7 @@ export const Middle = styled.div`
 
 export const Footer = styled.div`
   display: flex;
-  background-color: #fff;
+  background-color: ${colors.white};
   height: 70px;
   flex-direction: column;
   align-items: center;
@@ -54,7 +55,7 @@ export const Logo = styled.img`
 `;
 export const QuestionsStep = styled.span`
   font-size: 22px;
-  color: #999;
+  color: ${colors.gray01};
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -67,11 +68,11 @@ export const Buttons = styled.button`
   width: 200px;
   height: 50px;
   background-color: ${props => props.color};
-  color: #fff;
+  color: ${colors.white};
   font-weight: bold;
   border-radius: 50px;
   .span {
-    color: #fff;
+    color: ${colors.white};
     font-size: 14px;
     font-weight: bold;
   }
@@ -80,17 +81,9 @@ export const Question = styled.span`
   margin-top: 30px;
   font-size: 23px;
   font-weight: 500;
-  color: #999;
+  color: ${colors.gray01};
 `;
-export const InputForm = styled.input`
-  margin-top: 20px;
-  width: 300px;
-  background-color: #fff;
-  border: 1pt solid #ccc;
-  padding: 10px;
-  font-size: 20px;
-  height: 50px;
-`;
+
 export const CheckOptions = styled.div`
   display: flex;
   flex-direction: column;
@@ -112,7 +105,7 @@ export const CheckOptions = styled.div`
 
 export const MsgThanks = styled.span`
   font-size: 16px;
-  text-align:center;
+  text-align: center;
   font-weight: bold;
   margin-top: 20px;
 `;
