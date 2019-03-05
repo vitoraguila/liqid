@@ -2,18 +2,24 @@
   "surveys": [
     {
       "id": 1,
-      "question": "How old are you?",
-      "type": "input"
+      "question": "What's your name?",
+      "type": "input",
+      "answersOptions": null,
+      "answer": null
     },
     {
       "id": 2,
-      "question": "How old are you?",
-      "type": "dropdown"
+      "question": "What's your favorite sport?",
+      "type": "dropdown",
+      "answersOptions": ["Basketball", "Soccer", "Golf"],
+      "answer": null
     },
     {
       "id": 3,
-      "question": "How old are you?",
-      "type": "radio"
+      "question": "What's your favorite color?",
+      "type": "radio",
+      "answersOptions": ["Blue", "Yellow", "Green"],
+      "answer": null
     }
   ]
 }

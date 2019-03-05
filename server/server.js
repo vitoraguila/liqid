@@ -9,10 +9,10 @@ app.use(cors());
 const surveys = JSON.parse(fs.readFileSync('jsons/surveys.json', 'utf8'));
 
 // ROUTE
-app.get('/jsons/surveys', (req, res) => {
-    res.send(JSON.stringify(surveys));
+app.get('/surveys', (req, res) => {
+  res.send(JSON.stringify(surveys));
 });
 
 app.listen(port, () => {
-    console.log(`Listening on Port: ${port}`);
+  console.log(`Listening on Port: ${port}`);
 });
